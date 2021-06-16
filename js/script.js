@@ -32,10 +32,12 @@ if (es == 1) {
     let leggera = bici[0];
     for (let i = 0; i < bici.length; i++) {
         const {peso} = bici[i];
-        if (peso < leggera.peso) leggera = bici[i];
+        const {peso:pesoLeg} = leggera;
+        if (peso < pesoLeg) leggera = bici[i];
     }
-
-    document.getElementById("text").innerHTML = `La bici ${leggera.nome} pesa ${leggera.peso}kg: è la più leggera.`;
+    
+    const {nome, peso} = leggera;
+    document.getElementById("text").innerHTML = `La bici ${nome} pesa ${peso}kg: è la più leggera.`;
 }
 else if (es == 2) {
     /* Creare un array di oggetti di squadre di calcio. Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti. Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0. Generare numeri random al posto degli 0 nelle proprietà: Punti fatti e falli subiti. (utilizzate le arrow function). Infine usando la destrutturazione creiamo un nuovo array i cui elementi sono sempre degli oggetti che contengono solo nomi e falli subiti e stampiamo tutto in console. */
@@ -70,12 +72,13 @@ else if (es == 2) {
     for (let i = 0; i < squadre.length; i++) {
         squadre[i].punti = randomN();
         squadre[i].falli = randomN();
-        const {nome, falli} = squadre[i];
+        const {nome, falli, punti} = squadre[i];
         arrFalli.push({nome, falli});
-        frase += `La squadra dei ${squadre[i].nome} ha fatto ${squadre[i].punti} punti e ${squadre[i].falli} falli <br>`; 
+        frase += `La squadra dei ${nome} ha fatto ${punti} punti e ${falli} falli <br>`; 
     }
 
     document.getElementById("text").innerHTML = frase;
     console.log(arrFalli);
 
 }
+
